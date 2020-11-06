@@ -15,7 +15,7 @@ function deleteToDo(event){
     const li = btn.parentNode;
     toDoLIst.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo){
-        return toDo.id !== parseInt(li.id);
+        return toDo.id !== 	(li.id);
     });
     //filter: array의 모든 아이템을 통해 함수를 실행함
     //filter의 파라미터는 함수로, 참인 것만 return해서 array를 채움
