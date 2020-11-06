@@ -4,10 +4,6 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODO_LS = 'toDos';
 
-function filterFn(toDo){
-    return toDo.id ===1
-}
-
 let toDos = [];
 
 function deleteToDo(event){
@@ -15,12 +11,12 @@ function deleteToDo(event){
     const li = btn.parentNode;
     toDoLIst.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo){
-        return toDo.id !== 	(li.id);
+        return toDo.id !==parseInt(li.id);
     });
     //filter: array의 모든 아이템을 통해 함수를 실행함
     //filter의 파라미터는 함수로, 참인 것만 return해서 array를 채움
     toDos = cleanToDos;
-    saveToDos();
+    saveToDos();    
 }
 
 function saveToDos(){
@@ -48,7 +44,7 @@ function paintToDo(text){
 }
 
 function loadToDos(){
-    const loadedToDos= localStorage.getItem(TODO_LS);
+    const loadedToDos= localStorage.getItem(TODO_LS);       // undifined가 나옴
     if(loadedToDos!==null){
      const parsedToDos = JSON.parse(loadedToDos);
      parsedToDos.forEach(function(toDo){
