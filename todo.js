@@ -48,7 +48,7 @@ function loadToDos(){
     if(loadedToDos!==null){
      const parsedToDos = JSON.parse(loadedToDos);
      parsedToDos.forEach(function(toDo){
-         paintToDo(toDo.text); 
+        paintToDo(toDo.text); 
      })   
     }
 }
