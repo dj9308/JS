@@ -11,7 +11,7 @@ function deleteList(event){
     const li = btn.parentNode;
     toDoLi.removeChild(li);
     const cleanToDos = ToDos.filter(
-        function(list){
+        function(list){W
             return list.id !== parseInt(li.id);
         }
     )
@@ -19,6 +19,7 @@ function deleteList(event){
     ToDos = cleanToDos;
     SaveToDos();
 }
+
 
 function loadList(){
     const storageList = localStorage.getItem(TODOLIST);
