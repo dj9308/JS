@@ -4,7 +4,7 @@ const pendingUl = document.querySelector("#Pending"),
   taskInput = taskForm.querySelector("input");
 
 const PENDINGKEY = "pendingList";
-const FINISHEDLIST = "finishedList";
+const FINISHEDKEY = "finishedList";
 
 let pend = [],
   finish = [];
@@ -31,9 +31,13 @@ function deleteFinishedList(event) {
   saveFinishedList();
 }
 
-function saveFinishedList() {}
+function saveFinishedList() {
+  localStorage.setItem(FINISHEDKEY, JSON.stringify(finish));
+}
 
-function savePendingList() {}
+function savePendingList() {
+  localStorage.setItem(PENDINGKEY,JSON.stringify(pend));
+}
 
 function paintPendingList(text) {
   const li = document.createElement("li");
@@ -94,7 +98,7 @@ function paintFinishedList(text) {
 
 function loadList() {
   const pendingList = localStorage.getItem(PENDINGKEY);
-  const finishedList = localStorage.getItem(FINISHEDLIST);
+  const finishedList = localStorage.getItem(FINISHEDKEY);
 
   if (pendingList != null) {
     const parsedPending = JSON.parse(pendingList);
