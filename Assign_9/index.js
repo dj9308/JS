@@ -1,40 +1,45 @@
 const display = document.querySelector("#display");
 
 let formula = '';
-
-let numberClicked = false;
-let zeroChk = true;
-let secondNum = false;
+let OverlapOperator = false;
+let chkSecondNum = false;
+let chkFirstOperator = false;
+let chkZero = true;
 
 function add (char) {
-    if(zeroChk){
-        display.value='';
-    }
-
-    if(numberClicked == false) {
-        if(isNaN(char) != true) {
-            if(secondNum){
-                display.value='';
-            }
-            formula+=char;
-            display.value += char; 
+    if(Number.isInteger(char)){
+        if(chkZero || chkSecondNum){
+            display.value = '';
+            chkZero = false;
+            chkSecondNum = false;
         }
-    } else { 
+        display.value+=char;
+        console.log(display.value);
         formula+=char;
-        secondNum = true;
+        chkFirstOperator = true;
+    }else if(chkFirstOperator){
+        console.log("?");
+        if(!OverlapOperator){
+            formula+=char;
+        }else{
+            calculate();
+        }
+        chkSecondNum = true;
+        OverlapOperator = true;
     }
-
-    if(isNaN(char) == true) {
-        numberClicked = false;
-    } else {
-        numberClicked = true;
-    }
+    console.log(formula);
 }
 function calculate() {
+    OverlapOperator = false;
     const result = eval(formula);
     display.value = result;
+    formula = result;
 }
 function reset() {
-    zeroChk = true;
+    chkZero = true;
+    chkSecondNum = false;
+    chkFirstOperator = false;
+    OverlapOperator = false;
+    formula='';
     display.value = 0;
 }
