@@ -12,30 +12,30 @@
         <td colspan="3">
           <input type="text" id="display" value="0" />
         </td>
-        <td onclick="reset()">C</td>
+        <td id="reset">C</td>
       </tr>
       <tr>
-        <td onclick="add(7)">7</td>
-        <td onclick="add(8)">8</td>
-        <td onclick="add(9)">9</td>
-        <td onclick="add('*')">*</td>
+        <td class="num">7</td>
+        <td class="num">8</td>
+        <td class="num">9</td>
+        <td class="oper">*</td>
       </tr>
       <tr>
-        <td onclick="add(4)">4</td>
-        <td onclick="add(5)">5</td>
-        <td onclick="add(6)">6</td>
-        <td onclick="add('-')">-</td>
+        <td class="num">4</td>
+        <td class="num">5</td>
+        <td class="num">6</td>
+        <td class="oper">-</td>
       </tr>
       <tr>
-        <td onclick="add(1)">1</td>
-        <td onclick="add(2)">2</td>
-        <td onclick="add(3)">3</td>
-        <td onclick="add('+')">+</td>
+        <td class="num">1</td>
+        <td class="num">2</td>
+        <td class="num">3</td>
+        <td class="oper">+</td>
       </tr>
       <tr>
-        <td colspan="2" onclick="add(0)">0</td>
-        <td onclick="calculate()">=</td>
-        <td onclick="add('/')">/</td>
+        <td colspan="2" class="num">0</td>
+        <td id="calculate">=</td>
+        <td class="oper">/</td>
       </tr>
     </table>
     <script src="index.js"></script>

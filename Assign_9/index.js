@@ -1,4 +1,8 @@
-const display = document.querySelector("#display");
+const display = document.querySelector("#display"),
+resetBtn = document.querySelector("#reset"),
+calculateBtn = document.querySelector("#calculate"),
+numBtn = document.querySelector(".num")
+operBtn = document.querySelector(".oper");
 
 let formula = '';
 let OverlapOperator = false;
@@ -6,7 +10,9 @@ let chkSecondNum = false;
 let chkFirstOperator = false;
 let chkZero = true;
 
-function add (char) {
+function add (event) {
+    let char = event.target;
+    console.log(char);
     if(Number.isInteger(char)){
         if(chkZero || chkSecondNum){
             display.value = '';
@@ -43,3 +49,12 @@ function reset() {
     formula='';
     display.value = 0;
 }
+
+function init(){
+    resetBtn.addEventListener("click", reset);
+    calculateBtn.addEventListener("click", calculate);
+    operBtn.addEventListener("click",add);
+    numBtn.addEventListener("click",add);
+}
+
+init();
