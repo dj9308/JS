@@ -1,42 +1,39 @@
-const result = document.querySelector(".js-result");
-const reset = document.querySelector(".js-reset");
-const equals = document.querySelector(".js-equals");
-const numbers = Array.from(document.querySelectorAll(".js-number"));
-const operations = Array.from(document.querySelectorAll(".js-operation"));
+const display = document.querySelector("#display"),
+resetBtn = document.querySelector("#reset"),
+calculateBtn = document.querySelector("#calculate"),
+numBtn = document.querySelector(".num")
+operBtn = document.querySelector(".oper");
 
-let firstValue = "",
-  firstDone,
-  secondValue = "",
-  secondDone,
-  currentOperation;
+let formula = '';
+let OverlapOperator = false;
+let chkSecondNum = false;
+let chkFirstOperator = false;
+let chkZero = true;
 
-function doOperation() {
-  const intValueA = parseInt(firstValue, 10);
-  const intValueB = parseInt(secondValue, 10);
-  switch (currentOperation) {
-    case "+":
-      return intValueA + intValueB;
-    case "-":
-      return intValueA - intValueB;
-    case "/":
-      return intValueA / intValueB;
-    case "*":
-      return intValueA * intValueB;
-    default:
-      return;
-  }
-}
-
-function handleNumberClick(e) {
-  const clickedNum = e.target.innerText;
-  if (!firstDone) {
-    firstValue = firstValue + clickedNum;
-    result.innerHTML = firstValue;
-  } else {
-    secondValue = secondValue + clickedNum;
-    result.innerHTML = secondValue;
-    secondDone = true;
-  }
+function add (event) {
+    let char = event.target.innerText;
+    console.log(char);
+    if(Number.isInteger(char)){
+        if(chkZero || chkSecondNum){
+            display.value = '';
+            chkZero = false;
+            chkSecondNum = false;
+        }
+        display.value+=char;
+        console.log(display.value);
+        formula+=char;
+        chkFirstOperator = true;
+    }else if(chkFirstOperator){
+        console.log("?");
+        if(!OverlapOperator){
+            formula+=char;
+        }else{
+            calculate();
+        }
+        chkSecondNum = true;
+        OverlapOperator = true;
+    }
+    console.log(formula);
 }
 
 function calculate() {
@@ -67,10 +64,13 @@ function handleReset() {
   result.innerHTML = "0";
 }
 
-function handleEqualsClick() {
-  if (firstDone && secondDone) {
-    calculate();
-  }
+function init(){
+    resetBtn.addEventListener("click", reset);
+    calculateBtn.addEventListener("click", calculate);
+    operBtn.addEventListener("click",add);
+    numBtn.addEventListener("click",function(){
+        console.log("hi");
+    });
 }
 
 numbers.forEach(function(number) {
