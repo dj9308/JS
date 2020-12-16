@@ -41,3 +41,5 @@ function init(){
 }
 
 init();
+
+// class 이름 추가 할 때 중복되는 스타일 확인 할 것.

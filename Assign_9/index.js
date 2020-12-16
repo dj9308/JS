@@ -50,7 +50,7 @@ function handleOperationClick(e) {
     firstDone = true;
   }
   if (firstDone && secondDone) {
-    calculate();
+    calculate();0
   }
   currentOperation = clickedOperation;
 }
